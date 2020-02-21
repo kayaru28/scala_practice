@@ -1,5 +1,5 @@
 
-var age = 19
+var age: Int = 5
 
 if(age < 18){
     println("aaaa")
