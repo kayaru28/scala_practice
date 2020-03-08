@@ -73,6 +73,22 @@ class tester2(val x1:Int,val y1:Int) extends test(x1,y1){
     override def inc(zz:Int):Int={x1}
 }
 ```
-
+### trait
 ```scala
+trait Iterator[A] {
+  def hasNext: Boolean
+  def next(): A
+}
+class IntIterator(to: Int) extends Iterator[Int] {
+  private var current = 0
+  override def hasNext: Boolean = current < to
+  override def next(): Int =  {
+    if (hasNext) {
+      val t = current
+      current += 1
+      t
+    } else 0
+  }
+}
+val iter = new IntIterator(10)
 ```
