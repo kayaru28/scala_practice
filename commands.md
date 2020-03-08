@@ -1,8 +1,16 @@
 scala's grammar memo
-## block
+
+
+## function
+```scala
+val add = (x: Int, y: Int) => x + y
+```
+
+## method
 ```scala
 def for10(): Unit ={}
 def for10(): Int ={}
+def addThenMultiply(x: Int, y: Int)(multiplier: Int): Int = (x + y) * multiplier
 ```
 
 
