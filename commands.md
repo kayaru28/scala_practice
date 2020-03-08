@@ -54,9 +54,13 @@ one match{
 ## class
 ```scala
 class test(val x:Int,val y:Int){
+    var _xx = 1 //public
+    private var _x = 0 //private
     def inc(z:Int):Int = { x+z }
+    def xx = _xx
 }
 val impl = new test(1,2)
+val impl = new test(y=2)
 ```
 
 ### inherit
