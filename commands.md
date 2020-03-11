@@ -92,3 +92,37 @@ class IntIterator(to: Int) extends Iterator[Int] {
 }
 val iter = new IntIterator(10)
 ```
+
+### mix in
+```scala
+abstract class A { val message: String }
+class B extends A { val message = "aaaabb cCCCCs"}
+trait C extends A { def loudMessage = message.toUpperCase()}
+trait S {  def echoMessage = "echoooooo" }
+trait T {
+  //def echoMessage = "echoo" <-NG
+  def echoMessage2 = "echo------"
+}
+class D extends B with C with S with T
+val d = new D
+{println(d.message);println(d.loudMessage);println(d.echoMessage)}
+```
+
+## tuple
+```scala
+val ingredient = ("Sugar" , 25, 5.01)
+
+println(ingredient._1) // Sugar
+println(ingredient._2)
+println(ingredient._3)
+
+val (name, quantity,value) = ingredient
+println(name) // Sugar
+println(quantity) // 25
+println(value)
+
+val numPairs = List((2, 5,"a"), (3, -7,"b"), (20, 56,"c"))
+for ((a, b,c) <- numPairs) {
+  println(c)
+}
+```
