@@ -13,6 +13,38 @@ def for10(): Int ={}
 def addThenMultiply(x: Int, y: Int)(multiplier: Int): Int = (x + y) * multiplier
 ```
 
+### higher order
+```scala
+object testtt{
+    val multipy=(x: Int,y: Int) => x * y
+    def add(x: Int, y: Int): Int = x + y
+   
+    def calc(calc_method: (Int,Int) => Int): Int = {
+        calc_method(1,2)
+    }
+    def calcBy(x:Int,y:Int,calc_method: (Int,Int) => Int): Int = {
+        calc_method(x*2,y)
+    }
+}
+
+println(testtt.calc(testtt.add))
+println(testtt.calc(testtt.multipy))
+println(testtt.calcBy(2,3,testtt.add))
+println(testtt.calcBy(2,3,testtt.multipy))
+```
+
+### factorial
+```scala
+def factorial_test(x:Int):Int={
+    def add1(x:Int):Int={
+        x+1
+    }
+    var y=add1(x)
+    y=add1(y)
+    y
+}
+println(factorial_test(3))
+```
 
 ## if
 ```scala
@@ -107,6 +139,17 @@ class D extends B with C with S with T
 val d = new D
 {println(d.message);println(d.loudMessage);println(d.echoMessage)}
 ```
+### case
+```scala
+case class profile(name:String,age:Int,height:Double)
+
+val member1 = profile("takahiro",24,161.2)
+val member2 = profile("takahiro",24,161.4)
+val member3 = profile("kana",21,151.2)
+println(member1==member2)
+println(member3)
+println(member3.name)
+```
 
 ## tuple
 ```scala
@@ -126,3 +169,23 @@ for ((a, b,c) <- numPairs) {
   println(c)
 }
 ```
+
+## pattern match
+```scala
+abstract class animal
+case class dog(name:String,voice:Int) extends animal
+case class cat(name:String,voice:Int) extends animal
+case class elephant(name:String,voice:Int,nose:Int) extends animal
+
+def getName(individual: animal):String={
+    individual match{
+        case dog(name2:String,voice:Int) =>
+            s"I am $name2"
+        case cat(name2:String,voice:Int) =>
+            s"my name is $name2"
+        case elephant(name:String,voice:Int,nose:Int) =>
+            s"my name is $name and nose is $nose"
+    }
+}
+```
+
