@@ -169,3 +169,23 @@ for ((a, b,c) <- numPairs) {
   println(c)
 }
 ```
+
+## pattern match
+```scala
+abstract class animal
+case class dog(name:String,voice:Int) extends animal
+case class cat(name:String,voice:Int) extends animal
+case class elephant(name:String,voice:Int,nose:Int) extends animal
+
+def getName(individual: animal):String={
+    individual match{
+        case dog(name2:String,voice:Int) =>
+            s"I am $name2"
+        case cat(name2:String,voice:Int) =>
+            s"my name is $name2"
+        case elephant(name:String,voice:Int,nose:Int) =>
+            s"my name is $name and nose is $nose"
+    }
+}
+```
+
