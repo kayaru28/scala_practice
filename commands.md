@@ -151,6 +151,20 @@ println(member3)
 println(member3.name)
 ```
 
+### unapply
+```scala
+object UserID{
+    def apply(name:String) = s"$name--generatedID--yyyymmdd"
+    def unapply(user_id:String):Option[String] = {
+        val stringArray: Array[String] = user_id.split("--")
+        if (stringArray.tail.nonEmpty) Some(stringArray.head) else None
+    }
+}
+val user = UserID("takuya")
+println(user)
+println(UserID(user))
+```
+
 ## tuple
 ```scala
 val ingredient = ("Sugar" , 25, 5.01)
