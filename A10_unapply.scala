@@ -1,4 +1,4 @@
-
+import scala.reflect.runtime.universe._
 
 
 object UserID{
@@ -8,7 +8,7 @@ object UserID{
         if (stringArray.tail.nonEmpty) Some(stringArray.head) else None
     }
 }
-
 val user = UserID("takuya")
 println(user)
 println(UserID(user))
+println(user.getClass)
