@@ -1,6 +1,3 @@
-import scala.reflect.runtime.universe._
-
-
 object UserID{
     def apply(name:String) = s"$name--generatedID--yyyymmdd"
     def unapply(user_id:String):Option[String] = {
