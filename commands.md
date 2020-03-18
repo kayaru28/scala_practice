@@ -165,6 +165,18 @@ println(user)
 println(UserID(user))
 ```
 
+### generics
+```scala
+class test[A,B]{
+    def push(x:A){println(x)}
+    def pushB(y:B){println(y)}
+}
+
+val impl = new test[Int,String]
+impl.push(1)
+impl.pushB("1")
+```
+
 ## tuple
 ```scala
 val ingredient = ("Sugar" , 25, 5.01)
