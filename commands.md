@@ -151,6 +151,100 @@ println(member3)
 println(member3.name)
 ```
 
+### unapply
+```scala
+object UserID{
+    def apply(name:String) = s"$name--generatedID--yyyymmdd"
+    def unapply(user_id:String):Option[String] = {
+        val stringArray: Array[String] = user_id.split("--")
+        if (stringArray.tail.nonEmpty) Some(stringArray.head) else None
+    }
+}
+val user = UserID("takuya")
+println(user)
+println(UserID(user))
+```
+
+### generics
+```scala
+class test[A,B]{
+    def push(x:A){println(x)}
+    def pushB(y:B){println(y)}
+}
+
+val impl = new test[Int,String]
+impl.push(1)
+impl.pushB("1")
+```
+
+### inner
+```scala
+
+class School(){
+    var members: List[Student] = Nil
+    class Student(name:String){
+        var name_ = name
+        var skill_math = 0
+        var skill_english = 0
+    }
+    def math_traing(){
+        for(student <- members){
+            student.skill_math = student.skill_math + 1
+            println("%s:%d".format(student.name_,student.skill_math))
+        }
+    }
+    def entry(new_comer:Student){
+        members = new_comer :: members
+    }
+}
+
+val high_school: School = new School
+val taro: high_school.Student = new high_school.Student("taro")
+var ziro = new high_school.Student("ziro")
+high_school.entry(taro)
+high_school.math_traing
+high_school.entry(ziro)
+high_school.math_traing
+```
+
+### abstract members
+```scala
+trait Values{
+    type U
+    type T
+    val v1:T
+    val v2:T
+    var v3:U
+}
+abstract class Values2(){
+    type U
+    type T
+    var v1:T
+    var v2:U
+}
+
+class C_Values() extends Values{
+    type U = Int
+    type T = String
+    val v1 = "aaa"
+    val v2 = "vvv"
+    var v3 = 3 //need
+}
+class C_Values2() extends Values2(){
+    type U = Int
+    type T = String
+    var v1 = "aaa" //need
+    var v2 = 2 //need
+}
+var impl = new C_Values
+println(impl.v1.getClass)
+println(impl.v2.getClass)
+println(impl.v3.getClass)
+var impl2 = new C_Values2
+println(impl2.v1.getClass)
+println(impl2.v2.getClass)
+```
+
 ## tuple
 ```scala
 val ingredient = ("Sugar" , 25, 5.01)
